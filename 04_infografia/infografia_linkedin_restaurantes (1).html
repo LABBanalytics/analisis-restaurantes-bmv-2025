@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis Competitivo Restaurantes BMV</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy:    #0A1628;
+    --blue:    #1565C0;
+    --gold:    #F9A825;
+    --red:     #C62828;
+    --green:   #2E7D32;
+    --light:   #EEF2F7;
+    --white:   #FFFFFF;
+    --gray:    #90A4AE;
+    --card-bg: #111E33;
+  }
+
+  body {
+    background: #0D0D0D;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .infografia {
+    width: 800px;
+    background: var(--navy);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0A1628 0%, #1565C0 100%);
+    padding: 48px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(249,168,37,0.12);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 30%;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .header h1 span { color: var(--gold); }
+  .header-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    margin-bottom: 28px;
+    letter-spacing: 0.3px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+  }
+  .meta-chip .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 36px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* KPI CARDS */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .kpi-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 22px 18px;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .kpi-card.alsea::before  { background: var(--blue); }
+  .kpi-card.gigante::before { background: var(--red); }
+  .kpi-card.gap::before    { background: var(--gold); }
+
+  .kpi-label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .kpi-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 46px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kpi-card.alsea  .kpi-value { color: #5C9EE8; }
+  .kpi-card.gigante .kpi-value { color: #E57373; }
+  .kpi-card.gap    .kpi-value { color: var(--gold); }
+  .kpi-unit {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  /* CHART VMT */
+  .chart-area {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 28px 24px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .chart-title {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    width: 72px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 40px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .bar-fill.alsea {
+    width: 100%;
+    background: linear-gradient(90deg, #1565C0, #5C9EE8);
+  }
+  .bar-fill.gigante {
+    width: 41.5%;
+    background: linear-gradient(90deg, #B71C1C, #E57373);
+  }
+  .bar-pct {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: white;
+  }
+  .bar-gap-indicator {
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px;
+    background: rgba(249,168,37,0.08);
+    border: 1px dashed rgba(249,168,37,0.3);
+    border-radius: 8px;
+  }
+  .bar-gap-indicator span {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+  }
+
+  /* INSIGHT BOX */
+  .insight-box {
+    background: linear-gradient(135deg, rgba(21,101,192,0.15), rgba(249,168,37,0.08));
+    border: 1px solid rgba(249,168,37,0.2);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 24px 28px;
+  }
+  .insight-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .insight-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .insight-text strong { color: var(--gold); font-weight: 600; }
+
+  /* INGRESO POR UNIDAD */
+  .ingreso-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .ingreso-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 24px 22px;
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .ingreso-empresa {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .ingreso-card.alsea  .ingreso-empresa { color: #5C9EE8; }
+  .ingreso-card.gigante .ingreso-empresa { color: #E57373; }
+  .ingreso-valor {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .ingreso-card.alsea  .ingreso-valor { color: #5C9EE8; }
+  .ingreso-card.gigante .ingreso-valor { color: #E57373; }
+  .ingreso-desc {
+    font-size: 11px;
+    color: var(--gray);
+  }
+  .brecha-ingreso {
+    grid-column: 1 / -1;
+    background: rgba(198,40,40,0.08);
+    border: 1px solid rgba(198,40,40,0.2);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .brecha-ingreso span {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #EF9A9A;
+  }
+  .brecha-ingreso strong { color: var(--red); }
+
+  /* MUNDIAL 2026 */
+  .mundial-section {
+    padding: 36px 48px;
+    background: linear-gradient(135deg, #0A1628 0%, #0D2B1A 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .mundial-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .mundial-badge {
+    background: linear-gradient(135deg, var(--gold), #FF8F00);
+    color: var(--navy);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 6px;
+  }
+  .mundial-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #66BB6A;
+    text-transform: uppercase;
+  }
+  .mundial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .mundial-card {
+    background: rgba(255,255,255,0.04);
+    border-radius: 14px;
+    padding: 22px 16px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .mundial-card.highlight {
+    background: linear-gradient(135deg, rgba(46,125,50,0.2), rgba(102,187,106,0.1));
+    border-color: rgba(102,187,106,0.3);
+  }
+  .mundial-card-label {
+    font-size: 11px;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+  .mundial-card-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .mundial-card.vmt   .mundial-card-value { color: #66BB6A; }
+  .mundial-card.bps   .mundial-card-value { color: var(--gold); }
+  .mundial-card.gap   .mundial-card-value { color: #EF9A9A; }
+  .mundial-card-note {
+    font-size: 10px;
+    color: var(--gray);
+    font-family: 'DM Mono', monospace;
+  }
+  .mundial-insight {
+    background: rgba(102,187,106,0.08);
+    border: 1px solid rgba(102,187,106,0.2);
+    border-left: 4px solid #66BB6A;
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.65;
+  }
+  .mundial-insight strong { color: #66BB6A; }
+
+  /* TABLA CONTEXTO */
+  .tabla-section { padding: 36px 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .tabla th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    text-transform: uppercase;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .tabla td {
+    padding: 11px 12px;
+    color: rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+  }
+  .tabla tr:hover td { background: rgba(255,255,255,0.02); }
+  .badge-impacto {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .badge-impacto.muy-alto { background: rgba(46,125,50,0.2); color: #66BB6A; border: 1px solid rgba(102,187,106,0.3); }
+  .badge-impacto.alto     { background: rgba(21,101,192,0.2); color: #5C9EE8; border: 1px solid rgba(92,158,232,0.3); }
+  .badge-impacto.medio    { background: rgba(198,40,40,0.15); color: #EF9A9A; border: 1px solid rgba(239,154,154,0.3); }
+  .badge-evento {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  .badge-evento.si  { background: #66BB6A; }
+  .badge-evento.no  { background: #EF9A9A; }
+
+  /* FOOTER */
+  .footer {
+    padding: 32px 48px;
+    background: rgba(0,0,0,0.3);
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .footer-author {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+  .footer-author strong {
+    display: block;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .footer-fuentes {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gray);
+    text-align: right;
+    line-height: 1.8;
+  }
+  .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hashtag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #5C9EE8;
+    background: rgba(21,101,192,0.12);
+    border: 1px solid rgba(21,101,192,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="infografia">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="tag">ANÁLISIS DE DATOS · BMV · 3T2025</div>
+    <h1>ANÁLISIS<br>COMPETITIVO<br><span>RESTAURANTES</span></h1>
+    <div class="header-sub">Alsea vs Grupo Gigante Restaurantes — Oportunidad Mundial 2026</div>
+    <div class="header-meta">
+      <div class="meta-chip"><div class="dot"></div>Reportes 3T2025 BMV</div>
+      <div class="meta-chip"><div class="dot"></div>PostgreSQL + Power BI</div>
+      <div class="meta-chip"><div class="dot"></div>5 tablas · Star Schema</div>
+    </div>
+  </div>
+
+  <!-- KPI DIAGNÓSTICO -->
+  <div class="section">
+    <div class="section-label">01 · Diagnóstico VMT 3T2025</div>
+    <div class="kpi-grid">
+      <div class="kpi-card alsea">
+        <div class="kpi-label">ALSEA · VMT</div>
+        <div class="kpi-value">4.10</div>
+        <div class="kpi-unit">% crecimiento YoY</div>
+      </div>
+      <div class="kpi-card gigante">
+        <div class="kpi-label">GIGANTE REST. · VMT</div>
+        <div class="kpi-value">1.70</div>
+        <div class="kpi-unit">% crecimiento YoY</div>
+      </div>
+      <div class="kpi-card gap">
+        <div class="kpi-label">GAP COMPETITIVO</div>
+        <div class="kpi-value">240</div>
+        <div class="kpi-unit">basis points</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRÁFICA VMT -->
+  <div class="section">
+    <div class="section-label">02 · Comparativo VMT</div>
+    <div class="chart-area">
+      <div class="chart-title">VMT Crecimiento YoY — Mismo entorno macroeconómico, misma temporada</div>
+      <div class="bar-group">
+        <div class="bar-row">
+          <div class="bar-label">ALSEA</div>
+          <div class="bar-track">
+            <div class="bar-fill alsea"><span class="bar-pct">4.10%</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">GIGANTE</div>
+          <div class="bar-track">
+            <div class="bar-fill gigante"><span class="bar-pct">1.70%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="bar-gap-indicator">
+        <span>▲ Brecha de <strong>240 BPS</strong> en el mismo trimestre · mismo ICC · mismo calendario deportivo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT 1 -->
+  <div class="section">
+    <div class="section-label">03 · Insight Principal</div>
+    <div class="insight-box">
+      <div class="insight-icon">💡</div>
+      <div class="insight-text">
+        Gigante Restaurantes creció en ingresos <strong>+3.9% YoY</strong> pero su utilidad operativa cayó <strong>-12.3%</strong> en el mismo periodo. La brecha de <strong>240 BPS en VMT vs Alsea</strong> no se explica solo por el entorno macro — Alsea captura el <strong>37.4% de sus ventas por canales digitales</strong> con programas de lealtad activos, mientras Gigante no reporta métricas equivalentes. <strong>Esa ausencia de datos ya es un dato.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- INGRESO POR UNIDAD -->
+  <div class="section">
+    <div class="section-label">04 · Eficiencia por Unidad</div>
+    <div class="ingreso-grid">
+      <div class="ingreso-card alsea">
+        <div class="ingreso-empresa">ALSEA</div>
+        <div class="ingreso-valor">$4,364</div>
+        <div class="ingreso-desc">MDP por unidad · 4,818 restaurantes</div>
+      </div>
+      <div class="ingreso-card gigante">
+        <div class="ingreso-empresa">GIGANTE REST.</div>
+        <div class="ingreso-valor">$3,529</div>
+        <div class="ingreso-desc">MDP por unidad · 631 restaurantes</div>
+      </div>
+      <div class="brecha-ingreso">
+        <span>Alsea genera <strong>$835 MDP más por unidad</strong> que Gigante Restaurantes en 3T2025</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXTO DEPORTIVO -->
+  <div class="tabla-section">
+    <div class="section-label">05 · Contexto Deportivo — 7 Trimestres</div>
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Periodo</th>
+          <th>Evento Principal</th>
+          <th>Impacto</th>
+          <th>Presente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="font-family:'DM Mono',monospace;color:#5C9EE8">1T 2024</span></td>
+          <td>Clausura 2024 Liga MX + Clásico Nacional</td>
+          <td><span class="badge-impacto alto">Alto</span></td>
+          <td><span class="badge-evento si"></span>SI</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'DM Mono',monospace;color:#5C9EE8">2T 2024</span></td>
+          <td>Copa América 2024 + Final Clausura</td>
+          <td><span class="badge-impacto muy-alto">Muy Alto</span></td>
+          <td><span class="badge-evento si"></span>SI</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'DM Mono',monospace;color:#E57373">3T 2024</span></td>
+          <td>Copa América Final + Pausa Liga MX</td>
+          <td><span class="badge-impacto medio">Medio-Bajo</span></td>
+          <td><span class="badge-evento no"></span>NO</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'DM Mono',monospace;color:#5C9EE8">4T 2024</span></td>
+          <td>Liguilla Apertura + Clásico + GP F1 México</td>
+          <td><span class="badge-impacto alto">Alto</span></td>
+          <td><span class="badge-evento si"></span>SI</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'DM Mono',monospace;color:#5C9EE8">1T 2025</span></td>
+          <td>Clausura 2025 + Clásico Nacional marzo</td>
+          <td><span class="badge-impacto alto">Alto</span></td>
+          <td><span class="badge-evento si"></span>SI</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'DM Mono',monospace;color:#5C9EE8">2T 2025</span></td>
+          <td>Final Clausura 2025 + Concachampions</td>
+          <td><span class="badge-impacto muy-alto">Muy Alto</span></td>
+          <td><span class="badge-evento si"></span>SI</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'DM Mono',monospace;color:#FFD54F">3T 2025</span></td>
+          <td>Apertura 2025 + Clásico Nacional 12 sept</td>
+          <td><span class="badge-impacto alto">Alto</span></td>
+          <td><span class="badge-evento si"></span>SI</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MUNDIAL 2026 -->
+  <div class="mundial-section">
+    <div class="mundial-title">
+      <div class="mundial-badge">⚽ MUNDIAL 2026</div>
+      <div class="mundial-label">Proyección · México Sede</div>
+    </div>
+    <div class="mundial-grid">
+      <div class="mundial-card vmt highlight">
+        <div class="mundial-card-label">VMT Proyectado</div>
+        <div class="mundial-card-value">4.20</div>
+        <div class="mundial-card-note">% con estrategia activa</div>
+      </div>
+      <div class="mundial-card bps">
+        <div class="mundial-card-label">BPS Oportunidad</div>
+        <div class="mundial-card-value">+250</div>
+        <div class="mundial-card-note">sobre base actual 1.70%</div>
+      </div>
+      <div class="mundial-card gap">
+        <div class="mundial-card-label">GAP vs Alsea</div>
+        <div class="mundial-card-value">-0.10</div>
+        <div class="mundial-card-note">Gigante superaría a Alsea</div>
+      </div>
+    </div>
+    <div class="mundial-insight">
+      Con el <strong>Mundial 2026 en México</strong> (CDMX, Guadalajara, Monterrey), un evento clasificado como <strong>impacto Muy Alto</strong>, Gigante Restaurantes podría proyectar un VMT de <strong>4.20%</strong> — cerrando completamente el GAP de 240 BPS e incluso superando a Alsea por 10 BPS. La condición: implementar <strong>hoy</strong> una estrategia digital y de lealtad comparable.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-top">
+      <div class="footer-author">
+        <strong>Luis Alberto</strong>
+        Analista de Datos · Domain Knowledge en Restaurantes
+      </div>
+      <div class="footer-fuentes">
+        Fuentes: Reportes 3T2025 BMV<br>
+        INEGI · ENCO · Liga MX · Wikipedia<br>
+        Herramientas: Excel · PostgreSQL · Power BI
+      </div>
+    </div>
+    <div class="hashtags">
+      <span class="hashtag">#DataAnalytics</span>
+      <span class="hashtag">#PowerBI</span>
+      <span class="hashtag">#SQL</span>
+      <span class="hashtag">#Restaurantes</span>
+      <span class="hashtag">#Mundial2026</span>
+      <span class="hashtag">#BMV</span>
+      <span class="hashtag">#Portfolio</span>
+      <span class="hashtag">#DataStorytelling</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

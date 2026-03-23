@@ -1,0 +1,8 @@
+empresa_id,trimestre,periodo,segmento,region,fecha_inicio,fecha_fin,num_unidades,ventas_trim_mdp,ventas_trim_ant_mdp,var_ventas_pct,ebitda_ajustado_trim_mdp,margen_ebitda_pct,vmt_crecimiento_pct,utilidad_operacion_mdp,depreciacion_amortizacion_mdp
+ALSEA,3T,2025,QSR+Cafeteras+FSR,Mexico,01/07/2025,30/09/2025,2502,11476,10679,7.5,2597,22.6,3.2,1550,620
+ALSEA,3T,2025,QSR+Cafeteras+FSR,Europa,01/07/2025,30/09/2025,1517,6457,5968,8.2,894,13.8,2.3,145,362
+ALSEA,3T,2025,QSR+Cafeteras+FSR,Sudamerica,01/07/2025,30/09/2025,799,3096,3250,-4.7,402,13,11.3,83,122
+GIGANTE,3T,2025,Autoservicios,Mexico+Chile+CA,01/07/2025,30/09/2025,,5987545,6150103,-2.6,,,,,345901
+GIGANTE,3T,2025,Restaurantes (Toks+El Farolito),Mexico,01/07/2025,30/09/2025,,2226987,2143220,3.9,,,,,244243
+GIGANTE,3T,2025,Inmobiliario,Mexico+Chile+CA,01/07/2025,30/09/2025,,624553,569040,9.8,,,,,461976
+GIGANTE,3T,2025,Distribucion Prisa,Mexico+Chile,01/07/2025,30/09/2025,,1060159,993275,6.7,,,,,57317
